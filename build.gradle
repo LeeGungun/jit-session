@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group 'com.lqx'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // jupiter测试依赖
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    // 可选spring-boot-starter-web依赖，根据自身需要可排除security
+    // implementation('org.springframework.boot:spring-boot-starter-web') {
+    //        exclude group: 'org.springframework.security', module: 'spring-security-config'
+    //    }
+    // jpa依赖
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // spring-boot-starter-test编译测试依赖，默认包含编译产品依赖和编译时依赖
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // lombok依赖
+    compileOnly 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+test {
+    useJUnitPlatform()
+}
